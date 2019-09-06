@@ -1,0 +1,9 @@
+Este archivo contiene un archivo .sql para generar la base de datos.
+Pasos:
+1) Descargar XAMPP
+2) Ir a Carpeta C:xampp
+3) buscar archivo xampp-control
+4) Seleccionar Start en Apache y en MySQL
+5) Una vez que inicia ir a localhost/phpmysadmin
+2) Seleccionar opción importar
+3) Buscar archivo .sql y Listo. Base de datos micampo generada
