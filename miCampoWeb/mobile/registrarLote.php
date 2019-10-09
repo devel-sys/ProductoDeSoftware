@@ -11,7 +11,7 @@ $password="";
 $conn = mysqli_connect($hostname, $username, $password, $database);
 
 
-$campo_id=1;
+$campo_id=$_POST["campo_id"];
 $nombre= $_POST['nombre'];
 $tamano= $_POST['tamano'];
 $lat1= $_POST['lat1'];
@@ -22,7 +22,6 @@ $long1= $_POST['long1'];
 $long2= $_POST['long2'];
 $long3= $_POST['long3'];
 $long4= $_POST['long4'];
-
 
 
 $statement=mysqli_prepare($conn,"INSERT INTO lote (campo_id, nombre,tamano, lat1, lat2, lat3, lat4, long1, long2, long3, long4) VALUES (?,?,?,?,?,?,?,?,?,?,?)");

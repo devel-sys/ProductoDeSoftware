@@ -3,17 +3,15 @@
 header('Content-Type: text/html; charset=utf-8');
 
 
-require 'Usuario.php';
+require 'Cultivo.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Manejar petición GET
-    $usuario = Usuario::getAll();
+    $cultivo = Cultivo::getAll();
 
-    if ($usuario) {
-
-        $datos["estado"] = 1;
-        $datos["usuario"] = $usuario;
+    if ($cultivo) {
+        $datos = $cultivo;
 
         print json_encode($datos);
     } else {

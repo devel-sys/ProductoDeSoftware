@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 require 'Database.php';
 
-class Campo
+class Actividad
 {
     function __construct()
     {
@@ -12,7 +12,7 @@ class Campo
 
     public static function getAll()
     {
-        $consulta = "SELECT * FROM campo";
+        $consulta = "select * from actividad";
         try {
             // Preparar sentencia
             $comando = Database::getInstance()->getDb()->prepare($consulta);
@@ -27,17 +27,17 @@ class Campo
     }
 
   
-    public static function getById($usuario_id)
+    public static function getById($actividad_id)
     {
 
-$consulta = ("select campo.usuario_id , campo.campo_id , campo.nombre , campo.lat1, campo.long1  from campo where campo.usuario_id = ?  ;");
+$consulta = ("select  * from actividad where actividad_id = ?  ;");
 
 
         try {
             // Preparar sentencia
             $comando = Database::getInstance()->getDb()->prepare($consulta);
             // Ejecutar sentencia preparada
-            $comando->execute(array($usuario_id));
+            $comando->execute(array($actividad_id));
             // Capturar primera fila del resultado
             $row = $comando->fetchAll(PDO::FETCH_ASSOC);
             return $row;
@@ -49,17 +49,8 @@ $consulta = ("select campo.usuario_id , campo.campo_id , campo.nombre , campo.la
         }
     }
 
-    /**
-     * Actualiza un registro de la bases de datos basado
-     * en los nuevos valores relacionados con un identificador
-     *
-     * @param $idMeta      identificador
-     * @param $titulo      nuevo titulo
-     * @param $descripcion nueva descripcion
-     * @param $fechaLim    nueva fecha limite de cumplimiento
-     * @param $categoria   nueva categoria
-     * @param $prioridad   nueva prioridad
-     */
+
+    //No se usa de aca en adelante
     public static function update(
         $usuario_id,
         $nombre,
@@ -119,12 +110,7 @@ $consulta = ("select campo.usuario_id , campo.campo_id , campo.nombre , campo.la
 
     }
 
-    /**
-     * Eliminar el registro con el identificador especificado
-     *
-     * @param $idMeta identificador de la meta
-     * @return bool Respuesta de la eliminación
-     */
+    
     public static function delete($usuario_id)
     {
         // Sentencia DELETE

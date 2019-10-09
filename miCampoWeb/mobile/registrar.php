@@ -12,15 +12,6 @@ $password="";
 // Crear conexion
 $conn = mysqli_connect($hostname, $username, $password, $database);
 
-
-// $nombre=ucwords(strtolower(validar_campo($_POST["nombre"])));
-// $apellido=ucwords(strtolower(validar_campo($_POST["apellido"])));
-// $correo=strtolower(validar_campo($_POST["correo"]));
-// $telefono=validar_campo($_POST["telefono"]);
-// $contrasena=$_POST["contrasena"];
-// $privilegio_id = 2;
-
-
 $nombre=$_POST["nombre"];
 $apellido=$_POST["apellido"];
 $correo=$_POST["correo"];

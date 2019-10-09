@@ -3,17 +3,15 @@
 header('Content-Type: text/html; charset=utf-8');
 
 
-require 'Usuario.php';
+require 'Actividad.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Manejar petición GET
-    $usuario = Usuario::getAll();
+    $actividad = Actividad::getAll();
 
-    if ($usuario) {
-
-        $datos["estado"] = 1;
-        $datos["usuario"] = $usuario;
+    if ($actividad) {
+        $datos = $actividad;
 
         print json_encode($datos);
     } else {
