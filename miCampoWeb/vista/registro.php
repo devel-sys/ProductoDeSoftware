@@ -17,7 +17,7 @@
 
 		<div class="row">
 			<br>
-			<div class="col-md-5 col-md-offset-4">
+			<div class="col-md-5 col-md-offset-3">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						

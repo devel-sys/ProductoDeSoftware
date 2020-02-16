@@ -21,6 +21,7 @@ body {
   margin:auto;
 }
 
+
 #copyright{
   text-align: center;
 }
@@ -39,6 +40,11 @@ body {
 .titulosCampo{
   text-align: center;
   font-weight: bold;
+}
+
+.container{
+  margin: auto;
+  display: block;
 }
 
 .contenedor {
@@ -65,3 +71,45 @@ thead th {
 tr {
   text-align: center;
 }
+
+
+.slider{
+  width: 95%;
+  margin:auto ;
+  display: block;
+  overflow: hidden;
+}
+
+.slider ul{
+  display: flex;
+  padding: 10%;
+  width: 100%;
+  animation: cambio 20s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-out;
+}
+
+.slider li {
+  width: 100%;
+  list-style: none;
+}
+
+.slider img {
+  width: 100%;
+}
+
+@keyframes cambio {
+  0% {margin-left: 0;}
+  20% {margin-left: 0;}
+/* espacio es el tiempo de transicion */
+  25% {margin-left: -100%;}
+  45% {margin-left: -100%;}
+
+  50% {margin-left: -200%;}
+  70% {margin-left: -200%;}
+
+  75% {margin-left: -300%;}
+  100% {margin-left: -300%;}
+
+}
+

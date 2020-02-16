@@ -16,8 +16,21 @@
         </div>
       </div>
     </div>
+  
     <p id="copyright" style="text-align: center;">&copy; Copyright MiCampo Mobile <br /><br /></p>
   </div>
+
+  <div class="slider">    
+      <ul>
+        <li><img src="imagenes/app/splash.png" alt=""></li>
+        <li><img src="imagenes/app/login.png" alt=""></li>
+        <li><img src="imagenes/app/campo.png" alt=""></li>
+        <li><img src="imagenes/app/registroactividad.png" alt=""></li>
+
+        <li><img src="" alt=""></li>
+
+      </ul>
+    </div>
 </body>
 <?php include 'partials/footer.php';?>
 </html>

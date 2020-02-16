@@ -18,8 +18,8 @@
 		<br>
 		<br>
 		<div class="row">
-			<div class="col-md-3">
-				<div class="panel panel-default">
+			<div class="col-md-5 col-md-offset-3" >
+				<div class="panel panel-default" >
 					<div class="panel-body">
 					
 						<form id="loginForm" action="validarCode.php" method="POST" role="form">
