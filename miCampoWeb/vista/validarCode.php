@@ -9,31 +9,50 @@ header('Content-type: application/json');
 $resultado = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["txtCorreo"]) && isset($_POST["txtContrasena"])) {
+    if (isset($_POST["correo"]) && isset($_POST["contrasena"])) {
 
-        //strtolower convierte a minuscula todo el campo
-        $txtCorreo  = strtolower(validar_campo($_POST["txtCorreo"]));
-        $txtContrasena = validar_campo($_POST["txtContrasena"]);
+//         // strtolower convierte a minuscula todo el campo
+        $txtCorreo  = strtolower(validar_campo($_POST["correo"]));
+        $txtContrasena = validar_campo($_POST["contrasena"]);
+
+        // $txtCorreo  = 'gonzapedrotti@hotmail.com';
+        // $txtContrasena = 'gonzapedrotti';
         
-        $resultado = array("estado" => "true");
-
+        $resultado = array();
+       
         if (UsuarioControlador::login($txtCorreo, $txtContrasena)) {
-            $usuario             = UsuarioControlador::getUsuario($txtCorreo, $txtContrasena);
+
+            $usuario                  = UsuarioControlador::getUsuario($txtCorreo, $txtContrasena);
+            $resultado['estado']      = true;
+            $resultado['usuario_id']  =$usuario->getId();
+            $resultado['nombre']      =$usuario->getNombre();
+            $resultado['apellido']    =$usuario->getApellido();
+            $resultado['correo']      =$usuario->getCorreo();
+            $resultado['telefono']    =$usuario->getTelefono();
+            $resultado['privilegio_id']=$usuario->getPrivilegioId();
+
+
             $_SESSION["usuario"] = array(
-                "usuario_id"     => $usuario->getId(),
+                "usuario_id"     => intval($usuario->getId()),
                 "nombre"         => $usuario->getNombre(),
                 "apellido"       => $usuario->getApellido(),
                 "correo"         => $usuario->getCorreo(),
-                "telefono"       => $usuario->getTelefono(),
-                "privilegio_id"  => $usuario->getPrivilegioId(),
+                "telefono"       => intval($usuario->getTelefono()),
+                "privilegio_id"  => $usuario->getPrivilegioId()
             );
-            return print(json_encode($resultado));
+
+        }else{            
+
+            $resultado['estado']      = false;
+
+            // $_SESSION["usuario"] = array("estado"=>"false");
         }
+
+        // return print(json_encode($_SESSION["usuario"]));
+        return print(json_encode($resultado));
 
     }
 }
-$resultado = array("estado" => "false");
-return print(json_encode($resultado));
 
 
 

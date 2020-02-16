@@ -26,12 +26,10 @@ class Actividad
         }
     }
 
-  
     public static function getById($actividad_id)
     {
 
 $consulta = ("select  * from actividad where actividad_id = ?  ;");
-
 
         try {
             // Preparar sentencia
@@ -48,7 +46,6 @@ $consulta = ("select  * from actividad where actividad_id = ?  ;");
             return -1;
         }
     }
-
 
     //No se usa de aca en adelante
     public static function update(

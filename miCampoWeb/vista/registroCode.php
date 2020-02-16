@@ -5,56 +5,131 @@ include '../helps/helps.php';
 
 session_start();
 
-//Validar que las contraseñas coinciden
-// function validarContrasena($contrasena,$confContrasena){
-//     if(strcmp($contrasena,$confContrasena)!==0){
-//         return false;
-//     }else{
-//         return true;
-//     }
-// }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (
-        isset($_POST["txtNombre"]) && isset($_POST["txtApellido"])!="" 
-    && isset($_POST["txtCorreo"]) && isset($_POST["txtTelefono"]) && 
-    isset($_POST["txtContrasena"])){
+    $datos=array();
+    $error=array();
+    $nombre=null;
+    $apellido=null;
+    $correo="";
+    $telefono="";
+    $contrasena="";
+    $confContrasena="";
+    $privilegioId=2;
 
-        if(trim($_POST["txtNombre"])=="" || trim($_POST["txtApellido"])==""){
-            // echo ' <script language="javascript">alert("Complete todos los campos");</script> ';
-            // $resultado = array("estado" => "false");
-            // header("location: registro.php");
-            echo '<script>alert("Complete Todos los Campos")</script> ';
-		
-			echo "<script>location.href='registro.php'</script>";
+    //Verificar Nombre
+    if(isset($_POST['nombre'])){
+
+        if(empty(trim($_POST['nombre']))){
+
+            $error['nombre']="No ingresó un nombre";
+        }else{
+            $nombre = validar_campo(ucwords($_POST['nombre']));
         }
-        else{
-           
+    }else{
+        $error['nombre']="No ingresó un nombre";
+    }
 
-            //strtlower convierte todo a minuscula
-            //ucwords convierte la primera letra de cada palabra a mayúscula
-            $txtNombre     = ucwords(strtolower(validar_campo($_POST["txtNombre"])));
-            $txtApellido   = ucwords(strtolower(validar_campo($_POST["txtApellido"])));
-            $txtCorreo     = strtolower(validar_campo($_POST["txtCorreo"]));
-            $txtTelefono   = validar_campo($_POST["txtTelefono"]);
-            $txtContrasena = validar_campo($_POST["txtContrasena"]);
-            $txtPrivilegioId = 2;
-    
-            if (UsuarioControlador::registrar($txtNombre, $txtApellido, $txtCorreo, $txtTelefono, $txtContrasena, $txtPrivilegioId)) {
-                $usuario             = UsuarioControlador::getUsuario($txtCorreo, $txtContrasena);
-                $_SESSION["usuario"] = array(
-                    "usuario_id"         => $usuario->getId(),
-                    "nombre"             => $usuario->getNombre(),
-                    "apellido"           => $usuario->getApellido(),
-                    "correo"             => $usuario->getCorreo(),
-                    "telefono"           => $usuario->getTelefono(),
-                    "privilegio_id"      => $usuario->getPrivilegioId(),
-                );
-                
-                header("location:admin.php");
+    //Verificar apellido
+    if(isset($_POST['apellido'])){
+        if(empty(trim($_POST['apellido']))){
+            $error['apellido']="No ingresó un apellido";
+        }else{
+            $apellido = validar_campo(ucwords($_POST['apellido']));
+        }
+    }else{
+        $error['apellido']="No ingresó un apellido";
+    }
+
+
+    //Verificar correo
+    if(isset($_POST['correo'])){
+        if(empty(trim($_POST['correo']))){
+            $error['correo']="No ingresó un correo";
+        }else{
+            $correo = strtolower(validar_campo($_POST['correo']));
+        }
+    }else{
+        $error['correo']="No ingresó un correo";
+    }
+
+    //Verificar telefono
+    if(isset($_POST['telefono'])){
+
+        if(empty(trim($_POST['telefono']))){
+
+            $error['telefono']="No ingresó un telefono";
+        }else{
+
+            $telefono = validar_campo($_POST['telefono']);
+        }
+    }else{
+
+        $error['telefono']="No ingresó un telefono";
+    }
+
+
+    //Verificar contrasena
+    if(isset($_POST['contrasena'])){
+
+        if(empty(trim($_POST['contrasena']))){
+
+            $error['contrasena']="No ingresó un contrasena";
+        }else{
+
+            $contrasena = $_POST['contrasena'];
+        }
+
+    }else{
+
+        $error['contrasena']="No ingresó un contrasena";
+    }
+
+
+    //Verificar confContrasena
+    if(isset($_POST['confContrasena'])){
+        if(empty(trim($_POST['confContrasena']))){
+            $error['confContrasena']="No confirmó la contraseña";
+        }else{
+            $confContrasena = $_POST['confContrasena'];
+            if(!($contrasena==$confContrasena)){
+                $error['igualdadContrasena'] = "Las contraseñas no coinciden";
             }
         }
+    }else{
+        $error['confContrasena']="No confirmó la contraseña";
     }
-} else {
-    header("location:registro.php?error=1");
-}
+
+            //Verificar que el correo no se encuentre registrado
+            if(UsuarioControlador::existeUsuario($correo)){
+                $error['errorExisteCorreo']="El correo ya se encuentra en uso";
+            };
+
+            if(empty($error)){
+                //se registra
+               if(UsuarioControlador::registrar($nombre, $apellido, $correo, $telefono, 
+                    $contrasena, $privilegioId)){
+                     $datos['exito']=true;
+                     $datos['mensaje']='Usuario Registrado con Éxito';
+                     $usuario = UsuarioControlador::getUsuario($correo, $contrasena);
+                        $_SESSION["usuario"] = array(
+                        "usuario_id"     => intval($usuario->getId()),
+                        "nombre"         => $usuario->getNombre(),
+                        "apellido"       => $usuario->getApellido(),
+                        "correo"         => $usuario->getCorreo(),
+                        "telefono"       => intval($usuario->getTelefono()),
+                        "privilegio_id"  => $usuario->getPrivilegioId()
+                    );
+                    }
+
+            }else{
+                    //No se registra
+                    $datos['exito']=false;
+                    $datos['errores'] = $error;
+                }
+        echo json_encode($datos);
+
+
+
+
+
+
 

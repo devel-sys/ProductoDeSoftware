@@ -18,7 +18,16 @@ $correo=$_POST["correo"];
 $telefono=$_POST["telefono"];
 $contrasena=$_POST["contrasena"];
 $privilegio_id = 2;
+
+// $nombre='Gonzalo';
+// $apellido='Pedrotti';
+// $correo='gonzalopedrotti@hotmail.com';
+// $telefono='3533434040';
+// $contrasena='gonzapedrotti';
+// $privilegio_id = 2;
 // $estado=1;
+
+$pass_cifrado = password_hash($contrasena,PASSWORD_DEFAULT);
 
 $con = Conectar();
 

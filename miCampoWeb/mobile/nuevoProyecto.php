@@ -36,6 +36,8 @@ if( $count2>0){
     // echo "Se van a insertar datos";
     $estado =2;
     $statement=mysqli_prepare($conn,"INSERT INTO proyecto_cultivo (nombre,cultivo_id,lote_id) VALUES (?,?,?)" );
+    
+    //Se le asigna el estado=2, que es:  En preparación
     $statement2=mysqli_prepare($conn,"UPDATE lote SET estado_id = 2 where lote_id = ? ");
     
     mysqli_stmt_bind_param($statement, "sii" , $nombre, $cultivo_id,$lote_id);

@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     if (isset($_GET['proyecto_cultivo_id'])) {
 
-       
         $parametro = $_GET['proyecto_cultivo_id'];
      
         // Tratar retorno

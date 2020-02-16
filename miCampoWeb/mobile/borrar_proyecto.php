@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $body = json_decode(file_get_contents("php://input"), true);
 
     // $body['proyecto_id']]
-    $retorno = ProyectoCultivo::delete(2);
+    $retorno = ProyectoCultivo::delete($);
 
     if ($retorno) {
         print json_encode(

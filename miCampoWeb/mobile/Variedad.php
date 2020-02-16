@@ -30,7 +30,10 @@ class Variedad
     public static function getById($cultivo_id)
     {
 
-$consulta = ("select cultivo.nombre as Cultivo, variedad.variedad_id as idvariedad, variedad.nombre as variedad, zona_variedad.nivel as niveldezona, zona.nombre as zona,zona_variedad.fecha_siembra as fechasiembra,  zona.descripcion from cultivo
+$consulta = ("select cultivo.nombre as Cultivo, variedad.variedad_id as idvariedad, 
+variedad.nombre as variedad, variedad.descripcion as descripcion, variedad.ciclo_dias as dias, 
+variedad.profundidad_siembra as profundidad, variedad.peso_semillas_kg as peso, variedad.plantas_ha as densidad, zona_variedad.nivel as niveldezona, zona.nombre as zona,
+date_format(zona_variedad.fecha_siembra, '%d-%m') as siembra,  zona.descripcion from cultivo
 inner join variedad on (cultivo.cultivo_id  = variedad.cultivo_id) 
 inner join zona_variedad on (variedad.variedad_id = zona_variedad.variedad_id)
 inner join zona on (zona_variedad.zona_id = zona.zona_id)

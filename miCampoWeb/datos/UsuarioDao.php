@@ -17,19 +17,13 @@ class UsuarioDao extends Conexion{
     public static function login($usuario){
         $query = "SELECT * FROM
         usuario WHERE correo = :correo AND contrasena = :contrasena";
-
         self::getConexion();
-
         $resultado = self::$cnx->prepare($query);
-
         $correo= $usuario->getCorreo();
         $contrasena=$usuario->getContrasena();
-         
         $resultado->bindParam(":correo", $correo);
         $resultado->bindParam(":contrasena", $contrasena);
-
         $resultado->execute();
-
         if($resultado->rowCount() > 0){
             $filas= $resultado->fetch();
 
@@ -40,6 +34,47 @@ class UsuarioDao extends Conexion{
             }
         }
         return false;
+    }
+
+         //Metodo sirve para verificar si existe el correo que se quiere registrar
+
+    public static function existeUsuario($usuario){
+
+         $checkCorreo="SELECT correo, contrasena FROM usuario WHERE correo= :correo";
+        self::getConexion();
+        $resultado1 = self::$cnx->prepare($checkCorreo);
+        $correo = $usuario->getCorreo();
+        $resultado1->bindParam(":correo",$correo);
+        $resultado1->execute();
+        if($resultado1->rowCount() > 0){
+            //Existe el correo-No se puede registrar
+            return true;
+
+        }else{  
+            //No existe - Se puede registrar  
+            return false;
+        }
+    }
+
+
+      public static function registrar($usuario){
+
+
+        $query = "INSERT INTO usuario (nombre,apellido,correo,telefono,contrasena,privilegio_id) 
+         VALUES (:nombre,:apellido,:correo,:telefono,:contrasena,:privilegio_id)";
+        self::getConexion();
+        $resultado = self::$cnx->prepare($query);
+        $resultado->bindValue(":nombre",        $usuario->getNombre());
+        $resultado->bindValue(":apellido",      $usuario->getApellido());
+        $resultado->bindValue(":correo",        $usuario->getCorreo());
+        $resultado->bindValue(":telefono",      $usuario->getTelefono());
+        $resultado->bindValue(":contrasena",    $usuario->getContrasena());
+        $resultado->bindValue(":privilegio_id", $usuario->getPrivilegioId());
+        $resultado->execute();
+        
+        return true;
+        
+    
     }
 
          //Metodo sirve para obtener un usuario
@@ -75,7 +110,7 @@ class UsuarioDao extends Conexion{
         }
         
          //Metodo sirve para obtener un usuario por Id
-         public static function getUsuarioPorId($usuario_id){
+        public static function getUsuarioPorId($usuario_id){
 
             $query = "SELECT usuario_id,nombre,apellido,correo,telefono,fecha_registro,privilegio_id 
             FROM usuario WHERE usuario_id= :usuario_id";
@@ -104,71 +139,6 @@ class UsuarioDao extends Conexion{
         }
 
 
-         //Metodo sirve para verificar si existe el correo que se quiere registrar
-         public static function existeUsuario($correo){
-
-            $query = "SELECT usuario_id,nombre,apellido,correo,telefono,fecha_registro,privilegio_id 
-            FROM usuario WHERE correo= :correo";
-    
-            self::getConexion();
-    
-            $resultado = self::$cnx->prepare($query);
-
-            $resultado->bindParam(":correo",  $correo);
-           
-            $resultado->execute();
-            $filas= $resultado->fetch();
-
-            $cantidadFilas = mysqli_num_rows($filas);
-
-            if($cantidadFilas>0)
-             {
-                 return false;
-                // echo ' <script language="javascript">alert("El correo ya se encuentra registrado");</script> ';
-            }else{
-                // $usuario = new Usuario();
-
-                // $usuario->setId($filas["usuario_id"]);
-                // $usuario->setNombre($filas["nombre"]);
-                // $usuario->setApellido($filas["apellido"]);
-                // $usuario->setCorreo($filas["correo"]);
-                // $usuario->setTelefono($filas["telefono"]);
-                // $usuario->setFecha_registro($filas["fecha_registro"]);
-                // $usuario->setPrivilegioId($filas["privilegio_id"]);
-                //info ya cargada en el objeto
-                //ahora se retorna esa entidad
-                return true;
-            }
-
-           
-        }
-    
-      //Metodo que sirve para registrar un usuario
-    public static function registrar($usuario){
-
-        // $checkCorreo=mysqli_query "SELECT correo, contrasena FROM usuario WHERE correo= :correo";
-        // $check_Correo =mysqli_num_rows($checkCorreo);
-
-        $query = "INSERT INTO usuario (nombre,apellido,correo,telefono,contrasena,privilegio_id) 
-        VALUES (:nombre,:apellido,:correo,:telefono,:contrasena,:privilegio_id)";
-
-
-        self::getConexion();
-        $resultado = self::$cnx->prepare($query);
-
-        $resultado->bindValue(":nombre",        $usuario->getNombre());
-        $resultado->bindValue(":apellido",      $usuario->getApellido());
-        $resultado->bindValue(":correo",        $usuario->getCorreo());
-        $resultado->bindValue(":telefono",      $usuario->getTelefono());
-        $resultado->bindValue(":contrasena",    $usuario->getContrasena());
-        $resultado->bindValue(":privilegio_id", $usuario->getPrivilegioId());
-
-        if ($resultado->execute()) {
-            return true;
-        }
-        return false;
-    }
-
       //Metodo que sirve para eliminar un usuario
       public static function eliminarUsuario($usuario_id){
         // $query = "DELETE FROM usuario WHERE usuario_id=:usuario_id";
@@ -191,9 +161,6 @@ class UsuarioDao extends Conexion{
         //Metodo sirve para obtener todos los usuarios para el CRUD
         public static function getUsuarios(){
 
-            // $query = "SELECT 
-            // usuario_id,nombre,apellido,correo,telefono,fecha_registro,privilegio_id,estado
-            // FROM usuario WHERE estado=1 order by privilegio_id ASC ";
             
             $query = "SELECT 
             usuario_id,nombre,apellido,correo,telefono,fecha_registro,privilegio_id,estado

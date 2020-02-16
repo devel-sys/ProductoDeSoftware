@@ -12,8 +12,11 @@ class Cultivo
 
     public static function getAll()
     {
-        $consulta = "select cultivo.cultivo_id as id, cultivo.nombre as nombre, periodocultivo.nombre as periodo, date_format(fechaInicio, '%m-%Y') as mesinicio, date_format(fechaFin, '%m-%Y') as mesfin from cultivo inner join periodocultivo on (cultivo.periodo_cultivo_id = periodocultivo.periodo_cultivo_id)
-        ";
+        $consulta = "select cultivo.cultivo_id as id, cultivo.nombre as nombre, 
+        periodocultivo.nombre as periodo, date_format(fechaInicio, '%m-%Y') as mesinicio, 
+        date_format(fechaFin, '%m-%Y') as mesfin from cultivo 
+        inner join periodocultivo on (cultivo.periodo_cultivo_id = periodocultivo.periodo_cultivo_id)";
+         
         try {
             // Preparar sentencia
             $comando = Database::getInstance()->getDb()->prepare($consulta);

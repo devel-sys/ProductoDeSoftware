@@ -1,7 +1,5 @@
-//contiene el archivo por medio de ajax
 $(document).ready(function(){
 
-    //bind: en base al elemento que el pasemos por string, ejecuta la funcion
     $("#loginForm").bind("submit",function(){
 
        $.ajax({
@@ -14,10 +12,10 @@ $(document).ready(function(){
            },
            success:function(response) {
 
-               if(response.estado == "true"){
+               if(response.estado == true){
                 $("body").overhang({
                     type: "success",
-                    message: "Usuario Encontrado. Iniciando su Perfil...",
+                    message: "Ingresando al perfil, aguarde un momento..." ,
                     callback:function(){
                         window.location.href= "admin.php";
                     }
@@ -30,18 +28,16 @@ $(document).ready(function(){
                } 
             $("#loginForm button[type=submit]").html("Ingresar");
             $("#loginForm button[type=submit]").removeAttr("disabled","disabled");
-
-
            },
+
            error:function(){
             $("body").overhang({
                 type: "error",
-                message: "Usuario o Contraseña incorrectos"
+                message: "Usuario o Contraseña Incorrectos"
             });
             $("#loginForm button[type=submit]").html("Ingresar");
             $("#loginForm button[type=submit]").removeAttr("disabled","disabled");
 
-            
            }
 
        });

@@ -45,8 +45,9 @@ class Lote
      */
     public static function getById($campo_id)
     {
-// $consulta = ("select lote.campo_id , lote.lote_id , lote.nombre , lote.tamano, lote.lat1, lote.long1 from lote where lote.campo_id = ?  ;");
-$consulta = ("select lote.campo_id , lote.lote_id , lote.nombre , lote.tamano, sum(lat1+lat2+lat3+lat4)/4 as lat1, sum(long1+long2+long3+long4)/4  as long1 from lote where lote.campo_id = ? group by lote.lote_id  ;");
+
+$consulta = ("select lote.campo_id , lote.lote_id , lote.nombre , lote.tamano, sum(lat1+lat2+lat3+lat4)/4 as lat1, sum(long1+long2+long3+long4)/4  as long1, estado_lote.nombre as estado from lote 
+inner join estado_lote on (lote.estado_id = estado_lote.estado_id) where lote.campo_id = ? group by lote.lote_id  ;");
         try {
             // Preparar sentencia
             $comando = Database::getInstance()->getDb()->prepare($consulta);

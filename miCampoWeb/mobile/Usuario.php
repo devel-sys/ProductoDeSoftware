@@ -3,10 +3,6 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
-/**
- * Representa el la estructura de las metas
- * almacenadas en la base de datos
- */
 require 'Database.php';
 
 class Usuario
@@ -15,12 +11,6 @@ class Usuario
     {
     }
 
-    /**
-     * Retorna en la fila especificada de la tabla 'meta'
-     *
-     * @param $idMeta Identificador del registro
-     * @return array Datos del registro
-     */
     public static function getAll()
     {
         $consulta = "SELECT * FROM usuario";
@@ -37,13 +27,7 @@ class Usuario
         }
     }
 
-    /**
-     * Obtiene los campos de una meta con un identificador
-     * determinado
-     *
-     * @param $idMeta Identificador de la meta
-     * @return mixed
-     */
+ 
     public static function getById($usuario_id)
     {
         // Consulta de la meta
@@ -71,17 +55,6 @@ class Usuario
         }
     }
 
-    /**
-     * Actualiza un registro de la bases de datos basado
-     * en los nuevos valores relacionados con un identificador
-     *
-     * @param $idMeta      identificador
-     * @param $titulo      nuevo titulo
-     * @param $descripcion nueva descripcion
-     * @param $fechaLim    nueva fecha limite de cumplimiento
-     * @param $categoria   nueva categoria
-     * @param $prioridad   nueva prioridad
-     */
     public static function update(
         $usuario_id,
         $nombre,
@@ -104,16 +77,7 @@ class Usuario
         return $cmd;
     }
 
-    /**
-     * Insertar una nueva meta
-     *
-     * @param $titulo      titulo del nuevo registro
-     * @param $descripcion descripción del nuevo registro
-     * @param $fechaLim    fecha limite del nuevo registro
-     * @param $categoria   categoria del nuevo registro
-     * @param $prioridad   prioridad del nuevo registro
-     * @return PDOStatement
-     */
+
     public static function insert(
         $usuario_id,
         $nombre,
@@ -141,12 +105,7 @@ class Usuario
 
     }
 
-    /**
-     * Eliminar el registro con el identificador especificado
-     *
-     * @param $idMeta identificador de la meta
-     * @return bool Respuesta de la eliminación
-     */
+
     public static function delete($usuario_id)
     {
         // Sentencia DELETE

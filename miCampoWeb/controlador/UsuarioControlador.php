@@ -11,7 +11,14 @@ class UsuarioControlador{
 
        return UsuarioDao::login($obj_usuario);
     }
-    
+
+    public static function existeUsuario($correo){
+        $obj_usuario = new Usuario();
+        $obj_usuario->setCorreo($correo);
+
+        return UsuarioDao::existeUsuario($obj_usuario);
+    }
+
     public function getUsuario($correo,$contrasena){
 
         $obj_usuario = new Usuario();
@@ -67,8 +74,7 @@ class UsuarioControlador{
     public function eliminarUsuario($usuario_id){
         return UsuarioDao::eliminarUsuario($usuario_id);
     }
-
-    
+ 
 }
 
 ?>
