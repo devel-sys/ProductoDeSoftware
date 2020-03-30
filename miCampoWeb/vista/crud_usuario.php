@@ -12,7 +12,7 @@ else{
 	header("location:login.php");
 }
 
-include "../controlador/UsuarioControlador.php"; 
+include "../ControladorObjeto/UsuarioControlador.php"; 
 include "../helps/helps.php"; 
 
 $filas = UsuarioControlador::getUsuarios();

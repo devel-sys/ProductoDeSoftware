@@ -1,6 +1,6 @@
 <?php
 
-include '../controlador/CampoControlador.php';
+include '../ControladorObjeto/CampoControlador.php';
 include '../helps/helps.php';
 
 session_start();

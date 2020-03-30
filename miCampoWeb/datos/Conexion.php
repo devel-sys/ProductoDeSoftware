@@ -7,7 +7,9 @@ class Conexion{
     //Retorna una conexion PDO
     public static function conectar(){
         try{
-            $cn =  new PDO("mysql:host=localhost;dbname=micampo","root","");
+           $cn =  new PDO("mysql:host=localhost;dbname=micampo","root","");
+            // $cn =  new PDO("mysql:host=localhost;dbname=id13079624_micampo","id13079624_root","micampomobile");
+
             // echo "CONECTADO";
             return $cn;
             // return $cn;

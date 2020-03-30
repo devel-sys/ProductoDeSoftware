@@ -1,6 +1,6 @@
 <?php
 
-include '../controlador/LoteControlador.php';
+include '../ControladorObjeto/LoteControlador.php';
 include '../helps/helps.php';
 
 session_start();
@@ -11,11 +11,11 @@ header('Content-type: application/json');
         $completo = array();
 
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     if (isset($_POST["campo_id"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["campo_id"])) {
 
         // strtolower convierte a minuscula todo el campo
-        // $usuario_id  = strtolower(validar_campo($_POST["campo_id"]));
+        $usuario_id  = strtolower(validar_campo($_POST["campo_id"]));
        $campo_id = 11;
 
         $cuenta = LoteControlador::getLotePorCampoId($campo_id);
@@ -31,9 +31,9 @@ header('Content-type: application/json');
 
             array_push($completo,$resultado);
         }
-//     }
+    }
 
-// }
+}
 
     return (print(json_encode($completo))) ;
 
