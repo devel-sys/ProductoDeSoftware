@@ -1,62 +1,24 @@
-<p>NAVBAR</p>
-<!-- <nav #barra id="barra" class="navbar navbar-expand-lg fixed-top">
-  <a id="coronel" class="navbar-brand" ><img src="" width="60%" height="60%" alt="Coronel Mayorista"></a>
-  <button class="navbar-toggler" type="button" (click)="toggleNavbar = !toggleNavbar">
-    <i class="fas fa-bars fa-lg"></i>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">MiCampo Web</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" [ngbCollapse]="!toggleNavbar">
-    <ul class="navbar-nav navbar-left">
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link"  (click)="toggleNavbar = !toggleNavbar"> Inicio </a>
-      </li>
-     
-      <li class="nav-item" ngbDropdown #myDrop="ngbDropdown" (mouseenter)="$event.stopPropagation(); myDrop.open();"
-          (mouseleave)="$event.stopPropagation(); myDrop.close();" >
-        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown1" (click)="mostrarBuscador()" role="button"  [routerLink]="['/articulos']">
-          Categorías
-        </a>
-
-        <div id="dropdown-menu-cat" ngbDropdownMenu class="dropdown-menu" role="menu" >
-          <a class="dropdown-item" [routerLink]="['/articulos']"(click)="ocultarBuscador();"> TODAS</a>
-          <div  class="item-menu-producto">
-            <div *ngFor="let categoria of categorias">
-              <a class="dropdown-item" [routerLink]="['/articulos',categoria.id]" (click)="ocultarBuscador();"> {{categoria.nombre}}
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link"  > Ofertas </a>
+        <a class="nav-link" href="#">Mis Campos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  > Historia </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" > Contacto</a>
-      </li>
-
-    </ul>
-
-    <ul class="navbar-nav ml-auto">
-      <li>
-
-      <li class="nav-item" ngbDropdown #myDrop="ngbDropdown">
-        <a style="color: #000;"  class="nav-link" ngbDropdownToggle id="navbarDropdown2" role="button">
-        </a>
-        <div ngbDropdownMenu class="dropdown-menu" role="menu">
-          <a class="dropdown-item" routerLink = 'usuario/perfilUsuario'><mat-icon>account_circle</mat-icon> MI PERFIL </a>
-          <a class="dropdown-item"><mat-icon>exit_to_app</mat-icon> SALIR </a>
-        </div>
+        <a class="nav-link" href="#">Actividades</a>
       </li>
       <li class="nav-item">
-        <a style="color: #000;" class="nav-link" ><i class="fas fa-unlock"></i> INGRESAR
-        </a>
+        <a class="nav-link" href="#">Servicios</a>
       </li>
     </ul>
   </div>
 </nav>
- -->
