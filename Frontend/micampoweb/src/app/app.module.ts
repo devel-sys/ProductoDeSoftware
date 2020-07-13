@@ -8,6 +8,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsuarioModule } from './usuario/usuario/usuario.module';
 import { MaterialModule } from './material/material.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RegistroComponent } from './usuario/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { MaterialModule } from './material/material.module';
     UsuarioModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

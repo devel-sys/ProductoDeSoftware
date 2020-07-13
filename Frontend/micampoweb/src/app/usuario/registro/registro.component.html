@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-xs-12 col-sm-12">
+
+        </div>
+        <div class="col-md-6 col-xs-12 col-sm-12">
+            <mat-card>
+                <mat-card-title>
+                    <mat-card-content>
+                        <form [formGroup]="formRegistro" (ngSubmit)="registrarUsuario()" class="example-form">
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput formControlName="inputNombre" placeholder="Bill Gates" type="text" class="formControl">
+                                <mat-error *ngIf="formRegistro.get('inputNombre').invalid">
+                                    Ingrese un nombre válido
+                                  </mat-error>
+                            </mat-form-field>
+
+
+                            <mat-form-field class="example-full-width">
+                              <mat-label>Email</mat-label>
+                              <input matInput formControlName="inputEmail" placeholder="Ex. pat@example.com" class="formControl">
+                              <mat-error *ngIf="formRegistro.get('inputEmail').invalid">
+                                Ingrese un correo válido
+                              </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Teléfono</mat-label>
+                                <input matInput formControlName="inputTelefono" placeholder="3533414040" class="formControl" pattern="0+\.[0-9]*[1-9][0-9]*$" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+                                <mat-error *ngIf="formRegistro.get('inputTelefono').invalid">
+                                  Ingrese un teléfono válido
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Localidad</mat-label>
+                                <input matInput formControlName="inputLocalidad" placeholder="Villa María" class="formControl"  >
+                                <mat-error *ngIf="formRegistro.get('inputLocalidad').invalid">
+                                  Ingrese una localidad válida
+                                </mat-error>
+
+                            </mat-form-field>
+
+                            <button mat-raised-button type="submit">Registrarme</button>
+                          </form>
+                       
+                    </mat-card-content>
+                </mat-card-title>
+            </mat-card>
+            
+        </div>
+
+
+    </div>
+</div>

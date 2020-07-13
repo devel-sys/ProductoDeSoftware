@@ -1,8 +1,8 @@
 <div class="container" style="padding-top: 50px;">
 
     <form [formGroup]="sesionGroup" class="form-signin text-center">
-      <img class="mb-6" src="../../../assets/sesion/usuario.png" alt="" width="72"
-           height="72">
+      <img class="mb-6" src="../../../assets/sesion/login.png" alt="" width="20%"
+           height="20%">
       <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
       
       <div class="example-container">
@@ -20,7 +20,7 @@
         </mat-form-field>
       </div>
 
-      <button class="btn btn-lg btn-primary btn-block" (click)="iniciarSesion()" type="submit">Ingresar</button>
+      <button mat-raised-button color="primary" class="btn btn-lg btn-primary btn-block" (click)="iniciarSesion()" type="submit">Ingresar</button>
       <div class="form-group">
         <a routerLink="/cliente" class="form-control login-user">Eres nuevo? Registrarme</a>
         <a routerLink="/recuperar" class="form-control login-user">Olvidé mi Contraseña</a>  

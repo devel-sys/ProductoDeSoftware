@@ -51,6 +51,10 @@ input {
   margin-top: 25px;
 }
 
+.mat-raised-button.mat-primary {
+  background: #28ad00;
+  color: #ffffff;
+}
 
 
 

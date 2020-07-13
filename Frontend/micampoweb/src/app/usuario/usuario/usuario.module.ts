@@ -6,7 +6,8 @@ import { UsuarioComponent } from './usuario.component';
 import { SesionComponent } from '../sesion/sesion.component';
 import { MisCamposComponent } from '../mis-campos/mis-campos.component';
 import { MaterialModule } from 'src/app/material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RegistroComponent } from '../registro/registro.component';
 
 
 @NgModule({
@@ -14,13 +15,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
     UsuarioComponent,
     SesionComponent,
-    MisCamposComponent
+    MisCamposComponent,
+    RegistroComponent
   ],
   imports: [
     CommonModule,
     UsuarioRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
     
   ]
 })
