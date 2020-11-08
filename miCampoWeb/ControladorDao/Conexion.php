@@ -21,6 +21,3 @@ class Conexion {
 }
 
 Conexion::conectar();
-
-
-?>
