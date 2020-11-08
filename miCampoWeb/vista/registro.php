@@ -59,6 +59,7 @@
                       <!--   <span id="alertacontrasena" class="errorcontrasena" name="alertacontrasena" style=" text-align:center; color:red; display:none"> * Las Contraseñas no Coinciden</span> -->
 					</div> 
 					<span id="error2"></span>
+					<!-- jquery en el archivo app2.js  -->
 				
 					<center>
 			

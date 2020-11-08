@@ -1,80 +1,37 @@
 <?php
 include '../datos/UsuarioDao.php';
 
-class UsuarioControlador{
+class UsuarioControlador {
 
-    public static function login($correo,$contrasena){
+    //Inicio de Sesion: Validar usu_email y usu_pass
+    public function sesionLogin($usu_email, $usu_pass) {
 
-        $obj_usuario = new Usuario();
-        $obj_usuario->setCorreo($correo);
-        $obj_usuario->setContrasena($contrasena);
+        $usuarioDao = new UsuarioDao();
 
-       return UsuarioDao::login($obj_usuario);
     }
 
-    public static function existeUsuario($correo){
-        $obj_usuario = new Usuario();
-        $obj_usuario->setCorreo($correo);
+    //Registro: Valida si el correo ya se encuentra registrado
+    public function validarEmail($usu_email) {
 
-        return UsuarioDao::existeUsuario($obj_usuario);
+        $usuarioDao = new UsuarioDao();
+
+        $validarEmail = $usuarioDao->existeEmail($usu_email);
+
+        return $validarEmail;
+
     }
 
-    public function getUsuario($correo,$contrasena){
+    //Registro: Registrar Usuario
+    public function registrarUsuario($usu_nombre, $usu_apellido, $usu_email, $usu_pass) {
 
-        $obj_usuario = new Usuario();
-        $obj_usuario->setCorreo($correo);
-        $obj_usuario->setContrasena($contrasena);
+        $usuarioDao = new UsuarioDao();
 
-       return UsuarioDao::getUsuario($obj_usuario);
+        $registro = $usuarioDao->registrarUsuario($usu_nombre, $usu_apellido, $usu_email, $usu_pass);
+
+        return $registro;
+
     }
 
-    //Obtiene todos los usuarios registrados en la base de datos
-    public function getUsuarios(){
-        return UsuarioDao::getUsuarios();
-    }
-    
-    //Metodo para registrar un usuario
-    public function registrar($nombre,$apellido,$correo,$telefono,$contrasena,$privilegio_id){
-
-        $obj_usuario = new Usuario();
-
-        $obj_usuario->setNombre($nombre);
-        $obj_usuario->setApellido($apellido);
-        $obj_usuario->setCorreo($correo);
-        $obj_usuario->setTelefono($telefono);
-        $obj_usuario->setContrasena($contrasena);
-        $obj_usuario->setPrivilegioId($privilegio_id);
-    
-       return UsuarioDao::registrar($obj_usuario);
-    }
-
-    //Metodo para crear un nuevo usuario
-    public function crearUsuario($nombre,$apellido,$correo,$telefono,$contrasena,$privilegio_id,$usuario_id){
-
-        $obj_usuario = new Usuario();
-
-        $obj_usuario->setNombre($nombre);
-        $obj_usuario->setApellido($apellido);
-        $obj_usuario->setCorreo($correo);
-        $obj_usuario->setTelefono($telefono);
-        $obj_usuario->setContrasena($contrasena);
-        $obj_usuario->setPrivilegioId($privilegio_id);
-
-        if(!is_null($usuario_id)){
-            $obj_usuario->setId($usuario_id);
-        }
-    
-       return UsuarioDao::crearUsuario($obj_usuario);
-    }
-
-    public function getUsuarioPorId($usuario_id){
-        return UsuarioDao::getUsuarioPorId($usuario_id);
-    }
-    
-    public function eliminarUsuario($usuario_id){
-        return UsuarioDao::eliminarUsuario($usuario_id);
-    }
- 
 }
 
 ?>

@@ -3,20 +3,16 @@
 include '../ControladorObjeto/UsuarioControlador.php';
 include '../helps/helps.php';
 
-session_start();
-
 header('Content-type: application/json');
 $resultado = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["correo"]) && isset($_POST["contrasena"])) {
 
-//         // strtolower convierte a minuscula todo el campo
+    if (isset($_POST["usu_email"]) && isset($_POST["usu_pass"])) {
+
+        // strtolower convierte a minuscula todo el campo
         $txtCorreo  = strtolower(validar_campo($_POST["correo"]));
         $txtContrasena = validar_campo($_POST["contrasena"]);
-
-        // $txtCorreo  = 'gonzapedrotti@hotmail.com';
-        // $txtContrasena = 'gonzapedrotti';
         
         $resultado = array();
        
@@ -45,10 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $resultado['estado']      = false;
 
-            // $_SESSION["usuario"] = array("estado"=>"false");
         }
 
-        // return print(json_encode($_SESSION["usuario"]));
         return print(json_encode($resultado));
 
     }

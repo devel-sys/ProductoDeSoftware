@@ -12,20 +12,6 @@ function validar_campo($campo){
     $campo=htmlspecialchars($campo);
     return $campo;
 }
-function getPrivilegio($p){
-    $privilegio="";
-    switch ($p){
-        case 1:
-        $privilegio="Administrador";
-        break;
-        case 2:
-        $privilegio="Cliente";
-        break;
-        default:
-        $privilegio="No Definido";
-        break;
-    }
-    return $privilegio;
-}
+
 ?>
 
