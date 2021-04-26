@@ -1,37 +1,35 @@
 <?php
-include '../datos/UsuarioDao.php';
+include '../Datos/UsuarioDao.php';
 
 class UsuarioControlador {
 
-    //Inicio de Sesion: Validar usu_email y usu_pass
-    public function sesionLogin($usu_email, $usu_pass) {
+    public static $usuarioDao;
 
-        $usuarioDao = new UsuarioDao();
+    public function __construct() {
 
+        self::$usuarioDao = new UsuarioDao();
+        
     }
 
-    //Registro: Valida si el correo ya se encuentra registrado
+    //Usuario: Valida si el mail se encuentra registrado
     public function validarEmail($usu_email) {
 
-        $usuarioDao = new UsuarioDao();
-
-        $validarEmail = $usuarioDao->existeEmail($usu_email);
+        $validarEmail = self::$usuarioDao->existeUsuario($usu_email);
 
         return $validarEmail;
 
     }
 
-    //Registro: Registrar Usuario
-    public function registrarUsuario($usu_nombre, $usu_apellido, $usu_email, $usu_pass) {
+    //Usuario: Registra un nuevo usuario
+    public function registrarUsuario($usu_nombre, $usu_apellido, $usu_pass, $usu_telefono, $usu_email, $usu_domicilio, $usu_codpos, 
+    $usu_localidad, $usu_provincia) {
 
-        $usuarioDao = new UsuarioDao();
-
-        $registro = $usuarioDao->registrarUsuario($usu_nombre, $usu_apellido, $usu_email, $usu_pass);
+        $registro = self::$usuarioDao->registrarUsuario($usu_nombre, $usu_apellido, $usu_pass, $usu_telefono, $usu_email, $usu_domicilio, $usu_codpos, 
+        $usu_localidad, $usu_provincia);
 
         return $registro;
 
     }
-
 }
 
 ?>

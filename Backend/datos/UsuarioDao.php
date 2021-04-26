@@ -1,65 +1,99 @@
 <?php
-include_once('../ControladorDao/Conexion.php');
-include '../entidades/Usuario.php';
 
-class UsuarioDao extends Conexion{
+include_once('Conexion.php');
+
+class UsuarioDao extends Conexion {
+
 
     protected static $cnx;
 
-    private static function getConexion(){
-        self::$cnx = Conexion::conectar();
+    private static function getConexion() {
+
+        $conexion = new Conexion();
+
+        self::$cnx = $conexion->conectar();
+
     }
 
-    private  static function desconectar(){
-        self::$cnx = null ;
+    private static function desconectar() {
+
+        self::$cnx = null;
+
     }
 
+    public static function existeUsuario($usu_email){
     
-    //Registro: Valida si el correo ya se encuentra registrado
-    public function existeEmail($usu_email) {
-
-        $query="SELECT usu_email from usuario where usu_email = :usu_email";
+        $sql="SELECT usu_email FROM usuario WHERE usu_email= :usu_email";
 
         self::getConexion();
 
-        $consulta = self::$cnx->prepare($query);
+        $consulta = self::$cnx->prepare($sql);
 
-        $consulta->bindValue(':usu_email', $usu_email);
+        $consulta->bindParam(":usu_email", $usu_email);
 
         $consulta->execute();
 
-        if($consulta->rowCount() > 0){ //Existe el correo-No se puede registrar
-            
+        if($consulta->rowCount() > 0) {
+
             return true;
 
-        }else{  //No existe, se puede registrar
+        }else{  
+            
             return false;
         }
-
     }
 
-    public function registrarUsuario($usu_nombre, $usu_apellido, $usu_email, $usu_pass) {
+    public function registrarUsuario($usu_nombre, $usu_apellido, $usu_pass, $usu_telefono, $usu_email, $usu_domicilio, $usu_codpos, 
+    $usu_localidad, $usu_provincia) {
 
-        $query = "INSERT INTO usuario(usu_nombre, usu_apellido, usu_email, usu_pass) 
-        VALUES (:usu_nombre, :usu_apellido, :usu_email, :usu_pass)";
+        $usu_habilitado = 0;
+        $usu_fechaLogin = date('Y-m-d H:i:s');
+        $usu_horaLogin = date('H:i:s', time());
+        $usu_permiso = 1;
 
-        self::getConexion();
+        try {
 
-        $consulta = self::$cnx->prepare($query);
+            self::getConexion();
 
-        $consulta->bindValue(':usu_nombre', $usu_nombre);
-        $consulta->bindValue(':usu_apellido', $usu_apellido);
-        $consulta->bindValue(':usu_email', $usu_email);
-        $consulta->bindValue(':usu_pass', $usu_pass);
+            $sql = "INSERT INTO usuario(usu_nombre, usu_apellido, usu_pass, usu_telefono, usu_email, usu_domicilio, usu_codpos, usu_localidad,
+            usu_provincia, usu_habilitado, usu_fechaLogin, usu_horaLogin, usu_permiso) 
+            VALUES (:usu_nombre, :usu_apellido, :usu_pass, :usu_telefono, :usu_email, :usu_domicilio, :usu_codpos, :usu_localidad,
+            :usu_provincia, :usu_habilitado, :usu_fechaLogin, :usu_horaLogin, :usu_permiso)";
 
-        if($consulta->execute()) {
-            return true;
+            $consulta = self::$cnx->prepare($sql);
+
+            $consulta->bindParam(':usu_nombre', $usu_nombre);
+            $consulta->bindParam(':usu_apellido', $usu_apellido);
+            $consulta->bindParam(':usu_pass', $usu_pass);
+            $consulta->bindParam(':usu_telefono', $usu_telefono);
+            $consulta->bindParam(':usu_email', $usu_email);
+            $consulta->bindParam(':usu_domicilio', $usu_domicilio);
+            $consulta->bindParam(':usu_codpos', $usu_codpos);
+            $consulta->bindParam(':usu_localidad', $usu_localidad);
+            $consulta->bindParam(':usu_provincia', $usu_provincia);
+            $consulta->bindParam(':usu_habilitado', $usu_habilitado);
+            $consulta->bindParam(':usu_fechaLogin', $usu_fechaLogin);
+            $consulta->bindParam(':usu_horaLogin', $usu_horaLogin);
+            $consulta->bindParam(':usu_permiso', $usu_permiso);
+
+            if($consulta->execute()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+
+        } catch (Exception $e) {
+
+            return false;
+
         }
 
-        return false;
-
     }
 
-}
+   
 
-?>
+}

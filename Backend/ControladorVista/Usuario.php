@@ -1,60 +1,61 @@
 <?php
 
 include_once('../ControladorObjeto/UsuarioControlador.php');
-include_once('../helps/helps.php');
-
-$postdata = file_get_contents("php://input");
-$request  = json_decode($postdata, true);
+include_once('../helps/header.php');
 
 date_default_timezone_set('America/Buenos_Aires');
 setlocale(LC_TIME,"es_AR");
 
-header('Content-Type: text/html; charset=utf-8');
-header('Content-type: application/json');
-header("Access-Control-Allow-Origin: *");
-header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin,access-control-allow-methods, access-control-allow-headers');
-
-
-// if($_SERVER['REQUEST_METHOD'] == "POST") {
+//Usuario: Registrar Usuario
+if($_SERVER['REQUEST_METHOD'] == "POST") {
 
     //Registro de Usuario
-    // if(isset($_POST['usu_nombre']) && isset($_POST['usu_apellido']) && isset($_POST['usu_email']) && isset($_POST['usu_pass'])) {
+    $usu_nombre     = $request->usu_nombre;
+    $usu_apellido   = $request->usu_apellido;
+    $pass_received  = $request->usu_pass;
+    $usu_pass       = password_hash($pass_received, PASSWORD_DEFAULT);
+    $usu_telefono   = $request->usu_telefono;
+    $usu_email      = $request->usu_email;
+    $usu_domicilio  = "";
+    $usu_codpos     = "";
+    $usu_localidad  = "";
+    $usu_provincia  = "";
 
-        // $usu_nombre = validar_campo($_POST['usu_nombre']);
-        // $usu_apellido = validar_campo($_POST['usu_apellido']);
-        // $usu_email = validar_campo($_POST['usu_email']);
-        // $usu_pass = password_hash($_POST['usu_pass'], PASSWORD_DEFAULT);
+    // $usu_domicilio  = $request->usu_domicilio;
+    // $usu_codpos     = $request->usu_codpos;
+    // $usu_localidad  = $request->usu_localidad;
+    // $usu_provincia  = $request->usu_provincia;
 
-        $usu_nombre = 'Gonzalo Joaquín';
-        $usu_apellido = 'Pedrotti';
-        $usu_email = 'gonzapedrotti2@hotmail.com';
-        $usu_pass = password_hash('12345678', PASSWORD_DEFAULT);
+    $resultado = array();
 
-        $resultado = array();
+    $usuarioControlador = new UsuarioControlador();
 
-        $usuarioControlador = new UsuarioControlador();
+    //Validar Usuario (usu_email)
+    $existeUsuario = $usuarioControlador->validarEmail($usu_email);
 
-        $existeUsuario = $usuarioControlador->validarEmail($usu_email);
+    if(!$existeUsuario) {
 
-        if(!$existeUsuario) {
+        $resultado['existeUsuario'] = false;
 
-            $resultado['existeUsuario'] = false;
+        //Registrar Usuario
+        if($usuarioControlador->registrarUsuario($usu_nombre, $usu_apellido, $usu_pass, $usu_telefono, $usu_email, $usu_domicilio, $usu_codpos, 
+        
+        $usu_localidad, $usu_provincia)) {
 
-            if($usuarioControlador->registrarUsuario($usu_nombre, $usu_apellido, $usu_email, $usu_pass)) {
-                $resultado['registro'] = true;
-            } else {
-                $resultado['registro'] = false;
-            }
+            $usuario['usuario'] = ''; //Obtener Usuario
 
+            $resultado['registro'] = true;
 
         } else {
-            $resultado['existeUsuario'] = true;
             $resultado['registro'] = false;
         }
 
-        echo json_encode($resultado);
-    // }
+    } else {
+        $resultado['existeUsuario'] = true;
+        $resultado['registro'] = false;
+    }
 
-// }
+    echo json_encode($resultado);
+}
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 
-include_once('../ControladorDao/SesionDao.php');
-
+include_once('../Datos/SesionDao.php');
 
 class SesionControlador {
 

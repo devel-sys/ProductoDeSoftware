@@ -1,57 +1,30 @@
 <?php
 include '../datos/CampoDao.php';
 
-class CampoControlador{
+class CampoControlador {
 
-    //Obtiene todos los campos registrados en la base de datos
-    public function getCampos(){
-        return CampoDao::getCampos();
-    }
-    
-    //Metodo para registrar un campo
-    public function registrar($nombre,$latitud,$longitud){
+    private static $campoDao;
 
-        $obj_campo = new Campo();
-
-        $obj_campo->setNombre($nombre);
-        $obj_usuario->setApellido($latitud);
-        $obj_usuario->setCorreo($longitud);
-     
-    
-       return CampoDao::registrar($obj_campo);
+    public function __construct() {
+        self::$campoDao = new CampoDao();
     }
 
-    //Metodo para crear un nuevo usuario
-    public function crearCampo($campo_id,$nombre,$latitud, $longitud){
+    public function getCampos() {
 
-        $obj_usuario = new Usuario();
+        $campos = self::$campoDao->getCampos();
 
-        $obj_usuario->setNombre($nombre);
-        $obj_usuario->setApellido($apellido);
-        $obj_usuario->setCorreo($correo);
-        $obj_usuario->setTelefono($telefono);
-        $obj_usuario->setContrasena($contrasena);
-        $obj_usuario->setPrivilegioId($privilegio_id);
+        return $campos;
 
-        if(!is_null($usuario_id)){
-            $obj_usuario->setId($usuario_id);
-        }
-    
-       return CampoDao::crearCampo($obj_campo);
     }
 
+    public function getCampo() {
 
-    public function getCampoPorUsuarioId($usuario_id){
-        return CampoDao::getCampoPorUsuarioId($usuario_id);
     }
 
-    public function getCampoPorId($campo_id){
-        return CamposDao::getCampoPorId($campo_id);
+    public function registrarCampo($cam_usuario, $cam_nombre, $campo_latitud, $campo_longitud) {
+
     }
-    
-    public function eliminarCampo($campo_id){
-        return CampoDao::eliminarCampo($campo_id);
-    }
+
 
 }
 
