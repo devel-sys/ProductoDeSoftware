@@ -1,1 +1,36 @@
-<p>usuario-sesion works!</p>
+<div class="container-login100">
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+        <form class="login100-form validate-form" [formGroup]="sesionGroup">
+            <div class="login100-form-img">
+                <img src="../../../assets/img/navbar/logo.png" alt="">
+            </div>
+            <span class="login100-form-title p-b-37">
+                Iniciar Sesión
+            </span>
+
+            <div class="wrap-input100 validate-input m-b-20" >
+                <input [class.is-invalid]="sesionGroup.get('usu_usuario').touched && sesionGroup.get('usu_usuario').invalid" formControlName="usu_usuario" id="usu_usuario" required class="input100" type="text" name="usu_usuario" placeholder="Usuario o Correo">
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-25" >
+                <input [class.is-invalid]="sesionGroup.get('usu_pass').touched && sesionGroup.get('usu_pass').invalid" formControlName="usu_pass" id="usu_pass" required class="input100" type="password" name="usu_pass" placeholder="Contraseña">
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" (click)="onSelectIngresar()">
+                    Ingresar
+                </button>
+            </div>
+            <div class="container-login100-form-spinner">
+                <mat-spinner color="primary" diameter="25" *ngIf="showSpinner"></mat-spinner>
+            </div>
+            <div class="text-center">
+                <a href="#" class="txt2 hov1">
+                    Registrarse
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

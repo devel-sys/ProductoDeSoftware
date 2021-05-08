@@ -9,7 +9,8 @@ const routes: Routes = [
   {path: '', component: PrincipalComponent},
   {path: 'sign-in', component: UsuarioSesionComponent},
   {path: 'admin-sign-in', component: AdminSesionComponent},
-  {path: 'novedades', component: NovedadesComponent}
+  {path: 'novedades', component: NovedadesComponent},
+  {path: 'usuario', loadChildren: ()=> import('../usuario/usuario.module').then(m => m.UsuarioModule)}
 ];
 
 @NgModule({

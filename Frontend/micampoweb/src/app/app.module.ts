@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { RouteModule } from './route/route.module';
 import { SesionModule } from './sesion/sesion.module';
 import { CommonModule } from '@angular/common';
-import { NovedadesComponent } from './novedades/novedades.component';
-import { PrincipalComponent } from './principal/principal.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,9 @@ import { CoreModule } from './core/core.module';
     RouteModule,
     SesionModule,
     CommonModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
