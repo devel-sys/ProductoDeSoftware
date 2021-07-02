@@ -7,9 +7,17 @@
     background-color: #24252A;
 }
 
-body {
-    margin: 0;
-}
+.top-header {
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+
+    .container {
+        display: inline-flex;
+        width: auto;
+    }
+} 
 
 li, a, button {
     font-family: "Montserrat", sans-serif;
@@ -20,10 +28,86 @@ li, a, button {
 }
 
 header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px 10%;
+    background: linear-gradient(-90deg,#59a638,#3e8022);
+}
+
+.img-brand {
+    width: 45%;
+}
+
+nav {
+    overflow: hidden;
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 8px;
+}
+
+//*******************************************//
+
+// PC 
+@media screen and(min-width: 600px) {
+
+
+    .top-header {
+        display: block;
+    }
+    
+    ul {
+        text-align: center;
+        margin: auto;
+        justify-content: center;
+    
+        li {
+            margin: 0px 5px 0px 5px;
+        }
+    }
+
+    header {
+        z-index: 5;
+        width: 100%;
+        background-size: cover;
+        position: relative;
+    }
+
+    nav {
+        position: relative;
+        top: 0;
+    }
+}
+
+// Movil 
+@media screen and(max-width: 600px) {
+
+    .top-header {
+        display: none;
+    }
+
+    nav {
+        background: linear-gradient(-90deg,#59a638,#3e8022);
+    }
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.nav-link {
+    color: #ffffff;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.navbar-toggler {
+    color: #191717;
+    border-color: #8a2be2;
+}
+
+.navbar-toggler-icon {
+    color: #000000;
 }
 
 .logo {
@@ -53,7 +137,7 @@ button {
     padding: 9px 25px;
     background-color: rgba(0, 136, 169, 1);
     border: none;
-    border-radius: 50px;
+    // border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }

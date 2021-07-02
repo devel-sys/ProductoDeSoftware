@@ -1,46 +1,50 @@
-<header>
-    <img class="logo" src="../../assets/img/navbar/logo.png" alt="Coronel-logo">
-    <nav>
-      <ul class="nav__links">
-        <li><a routerLink="">Inicio</a></li>
-        <li><a routerLink="sign-in">Proyectos</a></li>
-        <li><a routerLink="novedades">Novedades</a></li>
-      </ul>
-    </nav>
-    <a  class="cta"><button routerLink="sign-in">Ingresar</button></a>
-  </header>
-
-  
-  <!-- <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<header class="header">
+  <!-- <div class="top-header">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">
+        <img class="img-brand-pc" src="./assets/img/navbar/logo.png" alt="MiCampo">
+      </a>
+    </div>
+  </div> -->
+  <nav class="navbar navbar-expand-lg navbar-brown bg-brown">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <img class="img-brand" src="./assets/img/navbar/logo.png" alt="MiCampo">
+      </a>
+      <button class="navbar-toggler collapsed" type="button" (click)="toggleState()">
+        <i class="fas fa-bars fa-lg"></i>
       </button>
-    
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <div class="navbar-collapse" [ngClass]="{ 'collapse': isCollapse }">
+        <ul class="navbar-nav nav__links me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link" href="#">Ofertas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Empresa</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
+        <ul class="navbar-nav  nav__links">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" [routerLink]="['/sign-up']">Registrarme</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" [routerLink]="['/sign-in']">Ingresar</a>
+          </li>
+        </ul>
+
+        <!-- <form class="d-flex"> -->
+        <!-- <button class="btn btn-light">Ingresar</button> -->
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button> -->
+        <!-- </form> -->
       </div>
-  </nav> -->
-  
-  <!-- <div class="portada">
-      <img id="fondo_portada"  alt="">
-      <img id="logo" src="./img/empty-cart-1.png" alt="Logo">
-      <p id="frase_presentaion"> Diseño Personalizado </p>
-      <input type="button" id="btn-ready" value="I'm ready">
-      <p id="Aprende-Mas">Aprende más de lo que hago</p>
-      <span class="icon-keyboard_arrow_down" id="Aprende-Mas"></span>
-  </div> -->
+    </div>
+  </nav>
+</header>

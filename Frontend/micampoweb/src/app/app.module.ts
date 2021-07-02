@@ -1,24 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { RouteModule } from './route/route.module';
-import { SesionModule } from './sesion/sesion.module';
+// Modulos
+import { RouteModule } from './core/route/route.module';
 import { CommonModule } from '@angular/common';
-import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 
+// Componentes
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    CoreModule,
     RouteModule,
-    SesionModule,
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,

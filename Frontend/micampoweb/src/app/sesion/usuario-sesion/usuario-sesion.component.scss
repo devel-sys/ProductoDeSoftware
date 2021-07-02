@@ -97,6 +97,10 @@ iframe {
   color: #0d013a;
 }
 
+.button-registro {
+  margin: 20px;
+}
+
 .hov1:hover {
   color: #0d013a;
   text-decoration: underline;
@@ -318,4 +322,10 @@ background-image: url('../../../assets/img/mockups/sm_01.jpg');
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.alerta {
+  color: #aa0c0c;
+  font: bold;
+  text-align: center;
 }

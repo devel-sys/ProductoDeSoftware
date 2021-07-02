@@ -24,10 +24,13 @@
                 </button>
             </div>
             <div class="container-login100-form-spinner">
-                <mat-spinner color="primary" diameter="25" *ngIf="showSpinner"></mat-spinner>
+                <mat-spinner color="primary" diameter="25"  [ngStyle]="{'visibility': showSpinner == true ? 'visible':'hidden'}"></mat-spinner>
             </div>
-            <div class="text-center">
-                <a href="#" class="txt2 hov1">
+            <div [ngStyle]="{'visibility': errorSesion == true ? 'visible':'hidden'}" class="alerta">
+                Usuario o contraseña incorrectos
+            </div>
+            <div class="text-center button-registro ">
+                <a class="txt2 hov1" [routerLink]="['/sign-up']">
                     Registrarse
                 </a>
             </div>

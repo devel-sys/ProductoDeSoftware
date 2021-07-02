@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import {
-  MatButtonModule, 
+  MatButtonModule,
   MatButtonToggleModule,
   MatExpansionModule,
   MatIconModule,
@@ -30,7 +30,7 @@ import {
   MatCheckboxModule,
   MatTabsModule,
 
-}   from '@angular/material';
+} from '@angular/material';
 
 const  MaterialComponents  =  [
   MatButtonModule,
@@ -61,7 +61,7 @@ const  MaterialComponents  =  [
   MatRadioModule,
   MatCheckboxModule,
   MatTabsModule,
-]
+];
 
 @NgModule({
   declarations: [],

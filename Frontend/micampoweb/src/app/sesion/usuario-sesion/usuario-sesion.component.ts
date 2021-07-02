@@ -1,56 +1,73 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { GlobalErrorService } from 'src/app/services/globalError/global-error.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
-  selector: 'app-usuario-sesion',
-  templateUrl: './usuario-sesion.component.html',
-  styleUrls: ['./usuario-sesion.component.scss']
+    selector: 'app-usuario-sesion',
+    templateUrl: './usuario-sesion.component.html',
+    styleUrls: ['./usuario-sesion.component.scss']
 })
-export class UsuarioSesionComponent implements OnInit {
+export class UsuarioSesionComponent implements OnDestroy {
 
-  constructor(
-    private authService: AuthService,
-    private storageService: StorageService
-  ) { }
+    // Formulario de Sesión
+    public sesionGroup: FormGroup;
 
-  ngOnInit() {
-  }
 
-  public sesionGroup = new FormGroup({
-    usu_usuario: new FormControl('', Validators.required),
-    usu_pass: new FormControl('', Validators.required)
-  })
+    // Subscripciones
+    private sesionSubscripcion: Subscription;
 
-  public showSpinner: boolean = false;
+    // Banderas
+    public showSpinner = false;
+    public errorSesion = false;
 
-  /********************SESION***********************/
-
-  //Sesion: Validar Datos ingresados
-  onSelectIngresar() { 
-    console.log(this.sesionGroup)
-    if(this.sesionGroup.valid) {
-      this.iniciarSesion(this.sesionGroup.value.usu_usuario, this.sesionGroup.value.usu_pass);
+    constructor(
+        private authService: AuthService,
+        private storageService: StorageService,
+        private globalError: GlobalErrorService
+    ) {
+        this.sesionGroup = new FormGroup({
+            usu_usuario: new FormControl('', Validators.required),
+            usu_pass: new FormControl('', Validators.required)
+        });
     }
-  }
 
-  //Sesion: Iniciar Sesión
-  iniciarSesion(usu_usuario, usu_pass) {
-    this.showSpinner = true;
-    console.log(usu_usuario, usu_pass);
-    this.authService.iniciarSesion(usu_usuario, usu_pass).subscribe(data => {
-      console.log(data);
-      if(data.estadoSesion && data.registroSesion) {
-        this.storageService.setUser(data.usuarioSesion);
-      }
-      this.showSpinner = false;
+    ngOnDestroy() {
+        if (this.sesionSubscripcion) {
+            this.sesionSubscripcion.unsubscribe();
+        }
+    }
 
-    }, error => {
-      this.showSpinner = false;
-    })
-  }
+    // Sesion: Validar Datos ingresados
+    onSelectIngresar() {
+        if (this.sesionGroup.valid) {
+            this.iniciarSesion(this.sesionGroup.value.usu_usuario, this.sesionGroup.value.usu_pass);
+        }
+    }
 
-  //COMENTARIO DESDE PRUEBA
+    // tslint:disable-next-line: variable-name
+    iniciarSesion(usu_usuario, usu_pass) {
+        this.showSpinner = true;
+        console.log(usu_usuario, usu_pass);
+        this.sesionSubscripcion = this.authService.iniciarSesion(usu_usuario, usu_pass).subscribe(data => {
+            console.log(data);
+            if (data.estadoSesion && data.registroSesion) {
+                this.storageService.setUsuario(data.usuarioSesion);
+            }
+            if (!data.estadoSesion || !data.registroSesion) {
+                // TO:DO Mostrar Alerta
+                this.mostrarAlerta();
+            }
+            this.showSpinner = false;
+        }, error => {
+            this.showSpinner = false;
+        });
+    }
+
+    private mostrarAlerta() {
+        this.globalError.gestionarError();
+    }
 
 }
