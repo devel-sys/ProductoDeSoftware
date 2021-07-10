@@ -11,11 +11,16 @@ import { MaterialModule } from './material/material.module';
 // Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DialogGenericComponent } from './core/components/dialog-generic/dialog-generic.component';
+
+// Google Maps
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    DialogGenericComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +29,11 @@ import { NavbarComponent } from './navbar/navbar.component';
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyBJ08xyWaO3mOEtoRHvw7g_fyXqI6LXHZc',
+    //   libraries: ['places', 'drawing', 'geometry']
+    // })
   ],
   providers: [],
   bootstrap: [AppComponent]

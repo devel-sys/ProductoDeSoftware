@@ -2,9 +2,9 @@
 
 *, *:before, *:after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background-color: #24252A;
+    // margin: 0;
+    // padding: 0;
+    // background-color: #24252A;
 }
 
 .top-header {
@@ -12,11 +12,6 @@
     margin: auto;
     justify-content: center;
     text-align: center;
-
-    .container {
-        display: inline-flex;
-        width: auto;
-    }
 } 
 
 li, a, button {
@@ -27,37 +22,21 @@ li, a, button {
     text-decoration: none;
 }
 
-header {
-    background: linear-gradient(-90deg,#59a638,#3e8022);
-}
+// header {
+//     background: linear-gradient(-90deg,#59a638,#3e8022);
+// }
 
 .img-brand {
-    width: 45%;
+    width: 30%;
 }
 
-nav {
-    overflow: hidden;
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    padding: 8px;
-}
 
-//*******************************************//
+// //*******************************************//
 
 // PC 
 @media screen and(min-width: 600px) {
-
-
-    .top-header {
-        display: block;
-    }
     
     ul {
-        text-align: center;
-        margin: auto;
-        justify-content: center;
-    
         li {
             margin: 0px 5px 0px 5px;
         }
@@ -71,20 +50,40 @@ nav {
     }
 
     nav {
+        background: linear-gradient(-90deg,#59a638,#3e8022);
+        overflow: hidden;
+        position: fixed; 
+        width: 100%; 
+        padding: 8px;
         position: relative;
         top: 0;
+    }
+
+    button {
+        padding: 9px 25px;
+        background-color: rgba(0, 136, 169, 1);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
     }
 }
 
 // Movil 
 @media screen and(max-width: 600px) {
 
-    .top-header {
-        display: none;
-    }
-
     nav {
         background: linear-gradient(-90deg,#59a638,#3e8022);
+        overflow: hidden;
+        position: fixed; 
+        top: 0; 
+        width: 100%; 
+        z-index: 999;
+    }
+
+    button {
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
     }
 }
 
@@ -122,26 +121,30 @@ nav {
 
 .nav__links li {
     display: inline-block;
-    padding: 0px 20px;
+    padding: 0px 10px;
 }
 
 .nav__links li a {
-    transition: all 0.3s ease 0s;
+    transition: all 0.6s ease 0s;
 }
 
 .nav__links li a:hover {
     color: #0088a9;
 }
 
-button {
-    padding: 9px 25px;
-    background-color: rgba(0, 136, 169, 1);
-    border: none;
-    // border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
+/********MATMENU Y MENU-ITEM***********/
+mat-menu {
+    background: #acacac;
 }
 
-button:hover {
-    background-color: rgba(0, 136, 169, 0.8);
+.menu-item {
+    color: #000000;
+    font-size: 13px;
+    font-weight: lighter;
 }
+
+.menu-item:hover {
+    cursor: pointer;
+    font-weight: 400;
+}
+/***************************************/

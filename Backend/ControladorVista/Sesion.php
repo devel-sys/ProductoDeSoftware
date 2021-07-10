@@ -1,11 +1,10 @@
 <?php
 
 include_once('../ControladorObjeto/SesionControlador.php');
-include_once('../helps/header.php');
+include_once('../Core/Helps/header.php');
 
 date_default_timezone_set('America/Buenos_Aires');
 setlocale(LC_TIME,"es_AR");
-
 
 //Usuario: Inicio de Sesión
 if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -48,6 +47,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     echo json_encode($respuesta);
+}
+
+if($_SERVER['REQUEST_METHOD'] == "PUT") {
+
+    $sesionControlador = new SesionControlador();
+
+    $ses_token = $request->ses_token;
+
+    $cierreSesion['estado'] = $sesionControlador->cerrarSesion($ses_token);
+
+    echo json_encode($cierreSesion);
 }
 
 ?>

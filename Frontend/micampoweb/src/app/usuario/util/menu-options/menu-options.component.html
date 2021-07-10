@@ -1,0 +1,4 @@
+<mat-nav-list *ngFor="let opt of menuItems">
+    <a mat-list-item [routerLink]="opt.routerLink" routerLinkActive="activada"> <i class="{{opt.icono}}"></i>
+        <a>{{opt.label}}</a></a>
+</mat-nav-list>

@@ -1,20 +1,20 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { GlobalErrorService } from 'src/app/services/globalError/global-error.service';
-import { StorageService } from 'src/app/services/storage/storage.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { GlobalErrorService } from 'src/app/core/services/globalError/global-error.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 @Component({
     selector: 'app-usuario-sesion',
     templateUrl: './usuario-sesion.component.html',
     styleUrls: ['./usuario-sesion.component.scss']
 })
-export class UsuarioSesionComponent implements OnDestroy {
+export class UsuarioSesionComponent implements OnInit, OnDestroy {
 
     // Formulario de Sesión
     public sesionGroup: FormGroup;
-
 
     // Subscripciones
     private sesionSubscripcion: Subscription;
@@ -26,12 +26,16 @@ export class UsuarioSesionComponent implements OnDestroy {
     constructor(
         private authService: AuthService,
         private storageService: StorageService,
-        private globalError: GlobalErrorService
+        private globalErrorService: GlobalErrorService,
+        private router: Router
     ) {
         this.sesionGroup = new FormGroup({
             usu_usuario: new FormControl('', Validators.required),
             usu_pass: new FormControl('', Validators.required)
         });
+    }
+
+    public ngOnInit() {
     }
 
     ngOnDestroy() {
@@ -54,20 +58,30 @@ export class UsuarioSesionComponent implements OnDestroy {
         this.sesionSubscripcion = this.authService.iniciarSesion(usu_usuario, usu_pass).subscribe(data => {
             console.log(data);
             if (data.estadoSesion && data.registroSesion) {
+                this.showSpinner = false;
                 this.storageService.setUsuario(data.usuarioSesion);
+                this.router.navigate(['/usuario']);
             }
             if (!data.estadoSesion || !data.registroSesion) {
-                // TO:DO Mostrar Alerta
+                this.showSpinner = false;
+                this.errorSesion = true;
                 this.mostrarAlerta();
             }
-            this.showSpinner = false;
         }, error => {
             this.showSpinner = false;
+            this.mostrarAlerta();
         });
     }
 
     private mostrarAlerta() {
-        this.globalError.gestionarError();
+        this.globalErrorService.accept('mensaje de prueba',
+            () => {
+                console.log('aceptado');
+            },
+            () => {
+                console.log('cancelado');
+            }
+        );
     }
 
 }

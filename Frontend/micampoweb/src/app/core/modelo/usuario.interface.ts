@@ -13,5 +13,5 @@ export interface UsuarioInterface {
     usu_fechaLogin ?: string;
     usu_horaLogin ?: string;
     usu_permiso ?: number;
-    usu_ses_token ?: string;
+    ses_token ?: string;
 }

@@ -57,8 +57,8 @@ class SesionDao extends Conexion {
         //CONVIERTE EL DATO BINARIO EN REPRESENTACIÓN HEXADECIMAL
         $ses_token = bin2hex($ses_token);
 
-        $query="INSERT INTO sesion(ses_email, ses_token, ses_fechaAlta, ses_fechaBaja, ses_expiracion_date)
-        VALUES(:ses_email, :ses_token, now(), null, ADDDATE(now(), 15))";
+        $query="INSERT INTO sesion(ses_email, ses_token, ses_fechaAlta, ses_fechaBaja, ses_expiracion_date, ses_active)
+        VALUES(:ses_email, :ses_token, now(), null, ADDDATE(now(), 15), 1)";
 
         self::getConexion();
 
@@ -113,6 +113,40 @@ class SesionDao extends Conexion {
 
     }
 
+    public function cerrarSesion($ses_token) {
+
+        self::getConexion();
+
+        $queryCodigo = "SELECT ses_codigo FROM sesion WHERE ses_token = :ses_token";
+
+        $consulta = self::$cnx->prepare($queryCodigo);
+
+        $consulta->bindValue(':ses_token', $ses_token);
+
+        $consulta->execute();
+
+        $fila = $consulta->fetch(PDO::FETCH_OBJ);
+
+        $ses_codigo = $fila->ses_codigo;
+
+        if(!$ses_codigo) {
+            return false;
+        }
+
+        $queryUpdate = "UPDATE sesion set ses_fechaBaja = NOW(), ses_active = 0 where
+        ses_token = :ses_token AND ses_codigo = :ses_codigo";
+
+        $consulta = self::$cnx->prepare($queryUpdate);
+
+        $consulta->bindValue(':ses_codigo', $ses_codigo);
+        $consulta->bindValue(':ses_token', $ses_token);
+
+        if ($consulta->execute()) {
+            return true;
+        };
+
+        return false;
+    }
 
 }
 

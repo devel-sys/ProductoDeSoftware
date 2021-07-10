@@ -1,0 +1,69 @@
+.example-is-mobile .example-toolbar {
+    position: fixed;
+    z-index: 2;
+}
+  
+h1.example-app-name {
+    margin-left: 8px;
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+}
+  
+.example-sidenav-container {
+    flex: 1;
+}
+  
+.example-is-mobile .example-sidenav-container {
+    flex: 1 0 auto;
+}
+
+.mat-toolbar.mat-primary {
+    color:#000000;
+    background: #e4e4e4;
+    font-family: 'Roboto';
+}
+
+mat-nav-list {
+    align-items: center;
+    text-align: center;
+}
+
+/******** ONLY CEL ********/
+@media screen and (max-width: 600px) {
+    mat-sidenav {
+        width: 40%;
+        margin-top: 60px;
+    }
+
+    .example-container {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+/******** ONLY DESKTOP ********/
+@media screen and (min-width: 600px) {
+    mat-sidenav {
+        width: 15%;
+    }
+
+    .example-container {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 85px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+mat-icon {
+    color: #000000;
+}

@@ -1,7 +1,7 @@
 <?php
 
 include_once('../ControladorObjeto/UsuarioControlador.php');
-include_once('../helps/header.php');
+include_once('../Core/Helps/header.php');
 
 date_default_timezone_set('America/Buenos_Aires');
 setlocale(LC_TIME,"es_AR");
@@ -20,11 +20,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $usu_codpos     = "";
     $usu_localidad  = "";
     $usu_provincia  = "";
-
-    // $usu_domicilio  = $request->usu_domicilio;
-    // $usu_codpos     = $request->usu_codpos;
-    // $usu_localidad  = $request->usu_localidad;
-    // $usu_provincia  = $request->usu_provincia;
 
     $resultado = array();
 
