@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject, Subscription } from 'rxjs';
 import { GlobalErrorService } from '../../services/globalError/global-error.service';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DialogGenericComponent } from '../dialog-generic/dialog-generic.component';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 import { GlobalErrorService } from '../../services/globalError/global-error.service';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
