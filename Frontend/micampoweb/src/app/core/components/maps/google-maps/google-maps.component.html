@@ -1,0 +1,11 @@
+<!-- <google-map width="800" heighy="600" [center]="position">
+    <map-marker [position]="position" [label]="label" [title]="title"></map-marker>
+</google-map> -->
+
+<google-map height="400px" width="750px" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)" (mapReady)="onMapReady($event)" >
+    <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition" [options]="markerOptions">
+    </map-marker>
+    <map-polyline [path]="vertices"></map-polyline>
+</google-map>
+
+<!-- <div id="map"></div> -->

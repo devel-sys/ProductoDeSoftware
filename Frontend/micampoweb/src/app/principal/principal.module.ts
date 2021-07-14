@@ -8,6 +8,7 @@ import { PrincipalComponent } from './principal.component';
 // Google Maps
 // import { AgmCoreModule } from '@agm/core';
 import { MaterialModule } from '../material/material.module';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -16,11 +17,12 @@ import { MaterialModule } from '../material/material.module';
   imports: [
     CommonModule,
     PrincipalRoutingModule,
+    LeafletModule,
+    MaterialModule
     // AgmCoreModule.forRoot({
     //   apiKey: 'AIzaSyBJ08xyWaO3mOEtoRHvw7g_fyXqI6LXHZc',
     //   libraries: ['places', 'drawing', 'geometry']
     // }),
-    MaterialModule
   ],
 
 })

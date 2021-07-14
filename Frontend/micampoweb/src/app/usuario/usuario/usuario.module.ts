@@ -12,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 // Componentes
 import { UsuarioComponent } from './usuario.component';
 import { MenuOptionsComponent } from '../util/menu-options/menu-options.component';
+import { MapsModule } from 'src/app/core/components/maps/maps.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MenuOptionsComponent } from '../util/menu-options/menu-options.componen
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MapsModule
   ]
 })
 

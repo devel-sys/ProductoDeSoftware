@@ -11,16 +11,11 @@ import { MaterialModule } from './material/material.module';
 // Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { DialogGenericComponent } from './core/components/dialog-generic/dialog-generic.component';
-
-// Google Maps
-// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    DialogGenericComponent,
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,0 @@
-<mat-dialog-content style="overflow: hidden;">
-    <span class="material-icons mat-48 error-icon">{{data.icon}}</span>
-    <span class="error-message" [innerHtml]="data.message"></span>
-</mat-dialog-content>
-<mat-dialog-actions *ngIf="data.accept || data.cancel" style="margin-top: 15px">
-    <button *ngIf="data.accept" mat-raised-button color="primary" [mat-dialog-close]="true"><i class="material-icons">done</i> Aceptar</button>
-    <button *ngIf="data.cancel" mat-button color="primary" [mat-dialog-close]="false"><i class="material-icons">cancel</i> Cancelar</button>
-</mat-dialog-actions>
