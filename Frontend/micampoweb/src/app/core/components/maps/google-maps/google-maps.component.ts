@@ -19,16 +19,16 @@ export class GoogleMapsComponent implements OnInit {
   //   text: 'Marcador'
   // };
 
-  center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
-  zoom = 4;
-  markerOptions: google.maps.MarkerOptions = {draggable: false};
-  markerPositions: google.maps.LatLngLiteral[] = [];
+  // center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
+  // zoom = 4;
+  // markerOptions: google.maps.MarkerOptions = {draggable: false};
+  // markerPositions: google.maps.LatLngLiteral[] = [];
 
-  vertices: google.maps.LatLngLiteral[] = [
-    {lat: 13, lng: 13},
-    {lat: -13, lng: 0},
-    {lat: 13, lng: -13},
-  ];
+  // vertices: google.maps.LatLngLiteral[] = [
+  //   {lat: 13, lng: 13},
+  //   {lat: -13, lng: 0},
+  //   {lat: 13, lng: -13},
+  // ];
 
   constructor() { }
 
@@ -43,11 +43,11 @@ export class GoogleMapsComponent implements OnInit {
     // );
   }
 
-  addMarker(event: google.maps.MapMouseEvent) {
-    this.markerPositions.push(event.latLng.toJSON());
-  }
+  // addMarker(event: google.maps.MapMouseEvent) {
+  //   this.markerPositions.push(event.latLng.toJSON());
+  // }
 
-  onMapReady(event) {
-    console.log(event);
-  }
+  // onMapReady(event) {
+  //   console.log(event);
+  // }
 }
