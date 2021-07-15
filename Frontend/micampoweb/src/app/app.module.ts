@@ -11,6 +11,7 @@ import { MaterialModule } from './material/material.module';
 // Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyBJ08xyWaO3mOEtoRHvw7g_fyXqI6LXHZc',
-    //   libraries: ['places', 'drawing', 'geometry']
-    // })
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBJ08xyWaO3mOEtoRHvw7g_fyXqI6LXHZc',
+      libraries: ['places', 'drawing', 'geometry']
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
