@@ -27,7 +27,7 @@
                 <mat-spinner color="primary" diameter="25"  [ngStyle]="{'visibility': showSpinner == true ? 'visible':'hidden'}"></mat-spinner>
             </div>
             <div [ngStyle]="{'visibility': errorSesion == true ? 'visible':'hidden'}" class="alerta">
-                Usuario o contraseña incorrectos
+                {{errorMensaje}}
             </div>
             <div class="text-center button-registro ">
                 <a class="txt2 hov1" [routerLink]="['/sign-up']">

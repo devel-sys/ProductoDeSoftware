@@ -23,6 +23,8 @@ export class UsuarioSesionComponent implements OnInit, OnDestroy {
     public showSpinner = false;
     public errorSesion = false;
 
+    public errorMensaje = '';
+
     constructor(
         private authService: AuthService,
         private storageService: StorageService,
@@ -53,8 +55,9 @@ export class UsuarioSesionComponent implements OnInit, OnDestroy {
 
     // tslint:disable-next-line: variable-name
     iniciarSesion(usu_usuario, usu_pass) {
+        this.errorSesion = false;
         this.showSpinner = true;
-        console.log(usu_usuario, usu_pass);
+
         this.sesionSubscripcion = this.authService.iniciarSesion(usu_usuario, usu_pass).subscribe(data => {
             console.log(data);
             if (data.estadoSesion && data.registroSesion) {
@@ -65,10 +68,13 @@ export class UsuarioSesionComponent implements OnInit, OnDestroy {
             if (!data.estadoSesion || !data.registroSesion) {
                 this.showSpinner = false;
                 this.errorSesion = true;
+                this.errorMensaje = 'Usuario o contraseña incorrectos.';
                 this.mostrarAlerta();
             }
         }, error => {
             this.showSpinner = false;
+            this.errorSesion = true;
+            this.errorMensaje = 'Error al conectarse con el servidor.';
             this.mostrarAlerta();
         });
     }

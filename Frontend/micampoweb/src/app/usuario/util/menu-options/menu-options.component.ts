@@ -26,41 +26,31 @@ export class MenuOptionsComponent implements OnInit {
       {
         label: 'Mis Proyectos',
         icon: 'fas fa-history',
-        routerLink: '/admin/historialVendedor',
+        routerLink: '/usuario/mis-proyectos',
         permiso: [1, 2, 3]
       },
       {
         label: 'Mis Actividades',
         icon: 'fas fa-luggage-cart',
-        routerLink: '/admin/pedidosNoConfirmados',
+        routerLink: '/usuario/mis-actividades',
         permiso: [2, 3]
       },
       {
         label: 'Historial de Actividades',
         icon: 'fas fa-exchange-alt',
-        routerLink: '/admin/historial-cambios',
-        routerLinkActiveOptions: '{exact : true}',
+        routerLink: '/usuario/historial-actividades',
         permiso: [2]
       },
       {
         label: 'Ranking de Proyectos',
         icon: 'fas fa-cart-arrow-down',
-        routerLink: '/admin/ventas',
-        routerLinkActiveOptions: '{exact : true}',
+        routerLink: '/usuario/ranking-proyecto',
         permiso: [2]
       },
       {
         label: 'Ranking de Actividades',
         icon: 'fas fa-sort-amount-up',
-        routerLink: '/admin/productos',
-        routerLinkActiveOptions: '{exact : true}',
-        permiso: [2]
-      },
-      {
-        label: 'Estadísticas',
-        icon: 'fas fa-chart-bar',
-        routerLink: '/admin/estadisticas',
-        routerLinkActiveOptions: '{exact : true}',
+        routerLink: '/usuario/ranking-actividades',
         permiso: [2]
       },
     ];

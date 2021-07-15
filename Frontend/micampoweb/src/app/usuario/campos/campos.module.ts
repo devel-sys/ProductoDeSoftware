@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CamposRoutingModule } from './campos-routing.module';
 import { CamposComponent } from './campos.component';
 import { MapsModule } from 'src/app/core/components/maps/maps.module';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { MapsModule } from 'src/app/core/components/maps/maps.module';
   imports: [
     CommonModule,
     CamposRoutingModule,
+    MatCardModule,
     MapsModule
   ]
 })

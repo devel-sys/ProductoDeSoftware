@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OlMapsComponent } from './ol-maps/ol-maps.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Componentes
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
-import { LeafletComponent } from './leaflet/leaflet.component';
+
+// Google Maps
 import { AgmCoreModule } from '@agm/core';
-// import { GoogleMapsModule } from '@angular/google-maps';
-// import { AgmCoreModule } from '@agm/core';
+import { OlMapsComponent } from './ol-maps/ol-maps.component';
+import { LeafletComponent } from './leaflet/leaflet.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -15,7 +21,11 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     CommonModule,
-    // GoogleMapsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBJ08xyWaO3mOEtoRHvw7g_fyXqI6LXHZc',
       libraries: ['places', 'drawing', 'geometry']

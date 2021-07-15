@@ -11,7 +11,30 @@
 <!-- <div id="map"></div> -->
 
 <!-- agm/core map -->
-<agm-map [latitude]="position.lat" [longitude]="position.long" [zoom]="zoom">
-    <agm-marker [latitude]="position.lat" [longitude]="position.long">
-    </agm-marker>
-</agm-map>
+
+<div class="container">
+
+    <mat-card>
+
+        <h1>Registro de campos</h1>
+
+        <!-- Input  -->
+        <div class="form-group">
+            <mat-form-field style="width: 100%;">
+                <input matInput [formControl]="inputSearch" placeholder="Buscar lugar...">
+            </mat-form-field>
+        </div>
+    
+        <!-- Google Map  -->
+        <agm-map [latitude]="position.lat" [longitude]="position.long" [zoom]="zoom">
+            <agm-marker [latitude]="position.lat" [longitude]="position.long" [markerDraggable]="true"
+                (dragEnd)="markerDragEnd($event)">
+            </agm-marker>
+        </agm-map>
+
+    </mat-card>
+
+
+
+
+</div>
