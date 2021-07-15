@@ -1,53 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { MapsAPILoader } from '@agm/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Coordenada } from 'src/app/core/modelo/coordenada.class';
 
 @Component({
-  selector: 'app-google-maps',
-  templateUrl: './google-maps.component.html',
-  styleUrls: ['./google-maps.component.scss']
+	selector: 'app-google-maps',
+	templateUrl: './google-maps.component.html',
+	styleUrls: ['./google-maps.component.scss']
 })
 export class GoogleMapsComponent implements OnInit {
 
-  title = 'gmaps';
+	title = 'gmaps';
 
-  // position = {
-  //   lat: -34.681,
-  //   lng: -58.37
-  // };
+	position: Coordenada;
 
-  // label = {
-  //   color: 'red',
-  //   text: 'Marcador'
-  // };
+	zoom = 15;
 
-  // center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
-  // zoom = 4;
-  // markerOptions: google.maps.MarkerOptions = {draggable: false};
-  // markerPositions: google.maps.LatLngLiteral[] = [];
+	// label = {
+	//   color: 'red',
+	//   text: 'Marcador'
+	// };
 
-  // vertices: google.maps.LatLngLiteral[] = [
-  //   {lat: 13, lng: 13},
-  //   {lat: -13, lng: 0},
-  //   {lat: 13, lng: -13},
-  // ];
+	// center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
+	// zoom = 4;
+	// markerOptions: google.maps.MarkerOptions = {draggable: false};
+	// markerPositions: google.maps.LatLngLiteral[] = [];
 
-  constructor() { }
+	// vertices: google.maps.LatLngLiteral[] = [
+	//   {lat: 13, lng: 13},
+	//   {lat: -13, lng: 0},
+	//   {lat: 13, lng: -13},
+	// ];
 
-  ngOnInit() {
+	constructor(
+		private mapsAPILoader: MapsAPILoader,
+		private ngZone: NgZone
+	) { }
 
-    // const map = new google.maps.Map(
-    //   document.getElementById('map') as HTMLElement,
-    //   {
-    //     zoom: 3,
-    //     center: { lat: -28.024, lng: 140.887 },
-    //   }
-    // );
-  }
+	ngOnInit() {
+		this.initPosition();
+		const geocoder = new google.maps.Geocoder();
 
-  // addMarker(event: google.maps.MapMouseEvent) {
-  //   this.markerPositions.push(event.latLng.toJSON());
-  // }
+	}
 
-  // onMapReady(event) {
-  //   console.log(event);
-  // }
+	// addMarker(event: google.maps.MapMouseEvent) {
+	//   this.markerPositions.push(event.latLng.toJSON());
+	// }
+
+	// onMapReady(event) {
+	//   console.log(event);
+	// }
+
+
+	// agm/core:
+	/*
+  
+		https://www.youtube.com/watch?v=DQZTeZZXYBk
+		https://angular-maps.com/api-docs/agm-core/index.html
+
+		Tutorial:
+		https://www.freakyjolly.com/angular-google-maps-using-agm-core/
+  
+	*/
+
+	private initPosition() {
+		this.position = new Coordenada();
+		if ('geolocation' in navigator) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				this.position.lat = position.coords.latitude;
+				this.position.long = position.coords.longitude;
+			});
+		}
+	}
 }

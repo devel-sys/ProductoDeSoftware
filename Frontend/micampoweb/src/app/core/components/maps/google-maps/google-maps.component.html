@@ -9,3 +9,9 @@
 </google-map> -->
 
 <!-- <div id="map"></div> -->
+
+<!-- agm/core map -->
+<agm-map [latitude]="position.lat" [longitude]="position.long" [zoom]="zoom">
+    <agm-marker [latitude]="position.lat" [longitude]="position.long">
+    </agm-marker>
+</agm-map>
