@@ -9,15 +9,14 @@ class CampoControlador {
         self::$campoDao = new CampoDao();
     }
 
-    public function getCampos() {
+    public function getCampos($propietario_id) {
 
-        $campos = self::$campoDao->getCampos();
+        $campos = self::$campoDao->getCampos($propietario_id);
 
         return $campos;
-
     }
 
-    public function getCampo() {
+    public function getCampo($campo_propietario_id, $campo_id) {
 
     }
 

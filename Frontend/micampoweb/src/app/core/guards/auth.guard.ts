@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     if (this.storageService.getUsuario()) {
       return true;
     }
+    console.log('ACCESO DENEGADO');
     this.router.navigate(['/sign-in']);
     return false;
   }

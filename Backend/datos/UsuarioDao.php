@@ -1,9 +1,8 @@
 <?php
 
-include_once('Conexion.php');
+include_once('../Core/Entidades/Conexion.php');
 
 class UsuarioDao extends Conexion {
-
 
     protected static $cnx;
 

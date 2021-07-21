@@ -5,7 +5,10 @@ import { CamposRoutingModule } from './campos-routing.module';
 import { CamposComponent } from './campos.component';
 import { MapsModule } from 'src/app/core/components/maps/maps.module';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddCampoComponent } from '../add-campo/add-campo.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,11 @@ import { MatCardModule } from '@angular/material/card';
     CommonModule,
     CamposRoutingModule,
     MatCardModule,
-    MapsModule
-  ]
+    MatButtonModule,
+    MatIconModule,
+    MapsModule,
+    MatDialogModule
+  ],
+  entryComponents: [AddCampoComponent]
 })
 export class CamposModule { }

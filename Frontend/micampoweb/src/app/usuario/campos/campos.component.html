@@ -3,6 +3,9 @@
 <ng-template #templateCampos>
     <div class="header-section">
         <h4>{{usuario.usu_nombre}}, estos son tus campos registrados</h4>
+        <button (click)="onSelectNuevoCampo()" mat-mini-fab color="primary" title="Nuevo campo" aria-label="Nuevo campo">
+            <mat-icon>add</mat-icon>
+        </button>
     </div>
     <div class="row itemBlock">
         <div *ngFor="let campo of campos" class="col-md-3 col-sm-4 col-xs-6">

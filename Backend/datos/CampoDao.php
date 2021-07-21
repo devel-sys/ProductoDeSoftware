@@ -1,6 +1,6 @@
 <?php
 
-include_once('Conexion.php');
+include_once('../Core/Entidades/Conexion.php');
 
 class CampoDao extends Conexion {
 
@@ -18,14 +18,22 @@ class CampoDao extends Conexion {
 
     }
 
-    public function getCampos() {
+    public function getCampos($campo_propietario) {
 
-        $campos = array(
-            "conexion" => true,
-            "endpoint" => "campo.php"
-        );
+        $query = "SELECT * FROM campo WHERE campo_propietario_id = :campo_propietario_id";
+
+        self::getConexion();
+
+        $consulta = self::$cnx->prepare($query);
+
+        $consulta->bindParam(':campo_propietario_id', $campo_propietario);
+
+        $consulta->execute();
+
+        $campos = $consulta->fetchAll(PDO::FETCH_OBJ);
 
         return $campos;
+
     }
 
     public function getCampo() {
